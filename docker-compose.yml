@@ -1,0 +1,24 @@
+version: "3.7"
+services:
+  mysql:
+    image: mysql:5.7
+    networks:
+      - spring-boot-mysql-network
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=apirestDB
+  apirest:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - spring-boot-mysql-network
+    depends_on:
+      - mysql
+      
+networks:
+  spring-boot-mysql-network:
+    driver: bridge
