@@ -8,7 +8,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=secret
       - MYSQL_DATABASE=apirestDB
-  apirest:
+  dockerapp:
     build:
       context: ./
       dockerfile: Dockerfile
